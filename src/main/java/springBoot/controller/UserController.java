@@ -33,17 +33,15 @@ public class UserController {
 
     @PostMapping("")
     public String saveUser(@ModelAttribute("user") User user) {
-        if (user.getId() == 0) {
+
             service.addUser(user);
             System.out.println("saveuser");
-        } else {
-            System.out.println("user was exist");
-        }
+
 
         return "redirect:/";
     }
 
-    @PostMapping("edit/{id}")
+    @PatchMapping("edit/{id}")
     public String updateUser(@ModelAttribute("user") User user) {
         System.out.println("update");
         service.updateUser(user);
@@ -64,8 +62,8 @@ public class UserController {
 
     }
 
-    @RequestMapping("delete/{id}")
-    public String deleteUser(@PathVariable("id") int id, Model model) {
+    @DeleteMapping ("delete/{id}")
+    public String deleteUser(@PathVariable("id") int id) {
         User user = service.getUserById(id);
         if (user != null) {
             System.out.println("postDeleteUser");

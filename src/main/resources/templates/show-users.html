@@ -19,8 +19,20 @@
     <td th:text="${users.name}">Name</td>
     <td th:text="${users.surName}">Surname</td>
     <td th:text="${users.age}">Age</td>
-    <td><a th:href="@{/edit/{id}(id=${users.id})}">Edit</a>
-      <a th:href="@{/delete/{id}(id=${users.id})}">Delete</a></td>
+  <td>
+      <div style="float: left;">
+<!--    <a th:href="@{/edit/{id}(id=${users.id})}">Edit</a>-->
+      <form  th:action="@{/edit/{id}(id=${users.id})}">
+        <input type="submit" value="Edit">
+      </form>
+      </div>
+      <div style="float: right;">
+        <form th:method="DELETE" th:action="@{/delete/{id}(id=${users.id})}">
+        <input type="submit" value="Delete">
+      </form>
+      </div>
+    </td>
+<!--      <a th:type="hidden" th:name="_method" th:value="delete" th:href="@{/delete/{id}(id=${users.id})}">Delete</a></td>-->
   </tr>
 </table>
 <br>
